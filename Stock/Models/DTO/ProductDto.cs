@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Stock.Models.Domain;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Stock.Models.DTO;
 
@@ -22,4 +24,7 @@ public class ProductDto
     public int Quantity { get; set; }
 
     public DateTime RegistrationDate { get; private set; }
+
+        
+
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stock.Data;
 
@@ -10,9 +11,11 @@ using Stock.Data;
 namespace Stock.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231110172647_Arrumando foreinkey 20")]
+    partial class Arrumandoforeinkey20
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,7 @@ namespace Stock.Migrations
 
             modelBuilder.Entity("Stock.Models.Domain.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -33,18 +36,18 @@ namespace Stock.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Stock.Models.Domain.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Category_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -61,9 +64,9 @@ namespace Stock.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("Category_Id");
 
                     b.ToTable("Products");
                 });
@@ -72,7 +75,7 @@ namespace Stock.Migrations
                 {
                     b.HasOne("Stock.Models.Domain.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("Category_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

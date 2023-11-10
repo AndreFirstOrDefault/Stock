@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Stock.Models.Domain;
 
@@ -17,4 +17,5 @@ public class Category
     public string? Description { get; set; }
 
     public ICollection<Product>? Products { get; set; }
+
 }

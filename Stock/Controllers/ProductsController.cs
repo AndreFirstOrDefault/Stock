@@ -27,6 +27,8 @@ public class ProductsController : ControllerBase
             Name = request.Name,
             Description = request.Description,
             Quantity = request.Quantity,
+            CategoryId = request.CategoryId
+            
         };
 
         await productRepository.CreateAsync(product);
@@ -37,7 +39,8 @@ public class ProductsController : ControllerBase
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
-            Quantity = product.Quantity
+            Quantity = product.Quantity,
+            
         };
 
         return Ok(response);

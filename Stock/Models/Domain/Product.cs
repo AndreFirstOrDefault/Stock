@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Stock.Models.Domain;
 
@@ -25,4 +26,10 @@ public class Product
 
     public DateTime RegistrationDate { get; private set; }
 
+    [Required(ErrorMessage = "Informe o Id da Categoria")]
+    [ForeignKey("Category")]
+    public int CategoryId { get; set; }
+
+    [JsonIgnore]
+    public Category Category { get; set; }
 }
