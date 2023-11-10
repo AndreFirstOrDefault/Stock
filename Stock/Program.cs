@@ -1,6 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Stock.Data;
+using Stock.Repositories.Implementation;
+using Stock.Repositories.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Registrando a string de conexão
+string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+    options.UseMySql(mySqlConnection,ServerVersion.AutoDetect(mySqlConnection)));
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
