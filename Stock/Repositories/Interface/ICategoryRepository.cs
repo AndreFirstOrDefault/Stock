@@ -15,6 +15,6 @@ public interface ICategoryRepository
 
     Task<Category> UpdateAsync(Category category);
 
-    //Task<ICollection<Category>> GetByName(string name);
+    
 
 }

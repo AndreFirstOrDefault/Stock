@@ -118,17 +118,5 @@ public class CategoriesController : ControllerBase
         return Ok(category);
 
     }
-
-    //[HttpGet]
-    //public async Task<IActionResult> GetByName(string name)
-    //{
-    //    var listCategoryContains = await categoryRepository.GetByName(name);
-
-    //    if(listCategoryContains is null)
-    //    {
-    //        return NotFound();
-    //    }
         
-    //    return Ok(listCategoryContains);
-    //}
 }

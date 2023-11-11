@@ -77,18 +77,5 @@ public class CategoryRepository : ICategoryRepository
         return null;
     }
 
-    //public async Task <ICollection<Category>> GetByName(string name)
-    //{
-    //    var listContainsName = await dbContext.Categories
-    //        .Where(c => c.Name.ToLower().Contains(name.ToLower()))
-    //        .ToListAsync();
-
-    //    if(listContainsName.Count == 0)
-    //    {
-    //        return null;
-    //    }
-
-    //    return listContainsName;
-        
-    //}
+    
 }
