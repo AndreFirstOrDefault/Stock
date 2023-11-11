@@ -84,4 +84,53 @@ public class ProductsController : ControllerBase
 
         return Ok(existingProduct);
     }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+    {
+        var existingProduct = await productRepository.DeleteAsync(id); 
+
+        // Map Domain model to DTO
+        if(existingProduct is null) 
+        {
+            return NotFound("Produto não encontrado");
+        }
+
+        return Ok(existingProduct);
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, UpdateProductRequestDto request)
+    {
+        // Convert DTO to Domain Model
+        var product = new Product
+        {
+            Id = id,
+            Name = request.Name,
+            Description = request.Description,
+            Quantity = request.Quantity,
+            CategoryId = request.CategoryId
+        };
+
+        product = await productRepository.UpdateAsync(product);
+
+        if (product is null)
+        {
+            return NotFound("Produto não encontrado");
+        }
+
+        // Convert Domain model to DTO
+        var response = new ProductDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Quantity = product.Quantity,
+            CategoryId = product.CategoryId
+        };
+
+        return Ok(response);
+    }
 }

@@ -9,4 +9,8 @@ public interface IProductRepository
     Task<ICollection<Product>> GetAllAsync();
 
     Task<Product?> GetById(int id);
+
+    Task<Product> DeleteAsync(int id);
+
+    Task<Product> UpdateAsync(Product product);
 }

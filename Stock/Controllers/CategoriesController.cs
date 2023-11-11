@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Stock.Data;
 using Stock.Models.Domain;
 using Stock.Models.DTO;
@@ -99,4 +101,34 @@ public class CategoriesController : ControllerBase
         return Ok(response);
     }
 
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, UpdateCategoryRequestDto request)
+    {
+        // Convert DTO to Domain model
+        var category = new Category
+        {
+            Id = id,
+            Name = request.Name,
+            Description = request.Description
+        };
+
+        category = await categoryRepository.UpdateAsync(category);
+        
+        return Ok(category);
+
+    }
+
+    //[HttpGet]
+    //public async Task<IActionResult> GetByName(string name)
+    //{
+    //    var listCategoryContains = await categoryRepository.GetByName(name);
+
+    //    if(listCategoryContains is null)
+    //    {
+    //        return NotFound();
+    //    }
+        
+    //    return Ok(listCategoryContains);
+    //}
 }

@@ -56,4 +56,39 @@ public class CategoryRepository : ICategoryRepository
         return existingCategory;
 
     }
+
+    public async Task<Category> UpdateAsync(Category category)
+    {
+        var existingCategory = dbContext.Categories.FirstOrDefault(c => c.Id == category.Id);
+
+        if(existingCategory != null)
+        {
+            dbContext.Entry(existingCategory).CurrentValues.SetValues(category);
+            await dbContext.SaveChangesAsync();
+
+            //existingCategory.Id = category.Id;
+            //existingCategory.Name = category.Name;
+            //existingCategory.Description = category.Description;
+            //await dbContext.SaveChangesAsync();
+
+            return category;
+        }
+
+        return null;
+    }
+
+    //public async Task <ICollection<Category>> GetByName(string name)
+    //{
+    //    var listContainsName = await dbContext.Categories
+    //        .Where(c => c.Name.ToLower().Contains(name.ToLower()))
+    //        .ToListAsync();
+
+    //    if(listContainsName.Count == 0)
+    //    {
+    //        return null;
+    //    }
+
+    //    return listContainsName;
+        
+    //}
 }
