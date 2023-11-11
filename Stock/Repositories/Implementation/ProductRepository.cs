@@ -1,4 +1,5 @@
-﻿using Stock.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Stock.Data;
 using Stock.Models.Domain;
 using Stock.Repositories.Interface;
 
@@ -19,5 +20,15 @@ public class ProductRepository : IProductRepository
         await dbContext.SaveChangesAsync();
 
         return product;
+    }
+
+    public async Task<ICollection<Product>> GetAllAsync()
+    {
+        return await dbContext.Products.ToListAsync();
+    }
+
+    public async Task<Product?> GetById(int id)
+    {
+        return await dbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
     }
 }

@@ -1,8 +1,12 @@
-﻿using Stock.Data;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using Stock.Data;
 using Stock.Models.Domain;
 using Stock.Repositories.Interface;
 
 namespace Stock.Repositories.Implementation;
+
+// 3º
 
 public class CategoryRepository : ICategoryRepository
 {
@@ -19,5 +23,37 @@ public class CategoryRepository : ICategoryRepository
         await dbContext.SaveChangesAsync();
 
         return category;
+    }
+
+    public async Task<ICollection<Category>> GetAllAsync()
+    {
+        return await dbContext.Categories.ToListAsync();
+    }
+
+    public async Task<Category> GetById(int id)
+    {
+        var existingCategory =  await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+
+        if(existingCategory != null)
+        {
+            return existingCategory;
+        }
+        throw new Exception("Categoria não encontrada");
+        
+    }
+
+    public async Task<Category> DeleteAsync(int id)
+    {
+        var existingCategory = await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+
+        if( existingCategory is null)
+        {
+            return null;
+        }
+
+        dbContext.Categories.Remove(existingCategory);
+        await dbContext.SaveChangesAsync();
+        return existingCategory;
+
     }
 }
