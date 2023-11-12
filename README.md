@@ -23,12 +23,41 @@ Cada produto tem as seguintes informações:
 
 ## Como Usar
 
-Para adicionar um novo produto ao estoque, siga estas etapas:
+### Para adicionar um novo produto ao estoque:
 
 1. Verifique se a categoria do produto já existe. Se não, crie uma nova categoria.
 2. Adicione o produto com as informações: Nome, Descrição, Quantidade e Id da Categoria.
 
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/CreateProduct.png" width="50%" height="50%">
+
+### Para adicionar uma nova categoria:
+
+1. Verifique se a categoria já existe. Se não, crie uma nova categoria.
+2. Adicione a categoria com as informações: Nome e Descrição.
+
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/CreateCategory.png" width="50%" height="50%">
+
+### Para alterar uma categoria:
+
+1. Verifique se a categoria já existe.
+2. Informe o Id da Categoria e os novos dados da Categoria.
+
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/UpdateCategory.png" width="50%" height="50%">
+
+### Para alterar um produto:
+
+1. Verifique se o produto existe.
+2. Informe o Id do produto, e as informações: Id, Nome, Descrição, Quantidade e Id da Categoria.
+
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/UpdateProduct.png" width="50%" height="50%">
+
+## Métodos disponíveis:
+
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/Products.png" width="50%" height="100%">
+
+<img src="https://github.com/andrejava2022/Stock/blob/main/Stock/Assets/Categories.png" width="50%" height="100%">
+
 ## Observação
 
-O projeto está em andamento, em breve mais funcionalidades.
+Projeto simples para treino na criação de web API's.
 
